@@ -1,0 +1,60 @@
+public class quick_sort
+{
+	static int partition(int[] ar , int l,int r)
+	{int high= ar[r];
+	 int r1=r;
+		while(l<r)
+		{
+			
+		
+			while(l<ar.length&&ar[l]<high)
+				l++;
+
+			
+			while(r>=0&&ar[r]>=high)
+				r--;
+
+			if(l<r){
+			int temp = ar[l];
+			ar[l]=ar[r];
+			ar[r]=temp;
+			l++;r--;
+			}
+
+		}
+
+		int temp =ar[l];
+		ar[l]=high;
+		ar[r1]=temp;
+			
+		return l;
+
+	}
+
+
+
+	static int[] quick(int[] ar, int l, int r)
+	{
+		if(l<r)
+		{
+			int part = partition(ar,l,r);
+			quick(ar,l,part-1);
+			quick(ar,part+1,r);
+
+		}
+
+		return ar;
+	}
+
+	static void print(int [] rs)
+	{
+		for(int i=0;i<rs.length;i++)
+			System.out.print(rs[i]+" ");
+	}
+	public static void main(String[] z)
+	{
+		int [] ar= new int[]{9,2,434,23,534,6,34,52,4,23,34,63};
+		int[] res= quick(ar, 0, ar.length-1);
+		print(res);
+	}
+}
