@@ -1,0 +1,83 @@
+public class merge
+{
+
+	static void merge_sort(int ar[], int lt ,int m, int rt)
+	{
+
+
+		int n1=m-lt+1;
+		int n2= rt-m;
+
+		int []l = new int[n1];
+		int []r = new int[n2];
+
+		for(int i=0;i<n1;i++)
+			l[i]= ar[lt+i];
+		for(int j=0;j<n2;j++)
+			r[j]=ar[m+1+j];
+
+		int i=0;
+		int j=0;
+
+		int k=lt;
+
+		while(i<n1&& j<n2)
+		{
+
+			if(l[i]<=r[j])
+			{
+				ar[k]=l[i];
+				i++;
+			}
+
+			else
+			{
+				ar[k]=r[j];
+				j++;
+
+			}
+			k++;
+
+		}
+
+		while(i<n1)
+		{
+			ar[k]=l[i];
+			i++;
+			k++;
+
+		}
+
+
+		while(j<n2)
+		{
+			ar[k]=r[j];
+			j++;
+			k++;
+		}
+
+	}
+	static int[] merge(int[] ar, int lt, int rt)
+	{
+		if(lt<rt)
+		{
+			int m= (lt+rt)/2;
+
+			merge(ar,lt,m);
+			merge(ar,m+1,rt);
+			merge_sort(ar,lt,m,rt);
+		}
+		return ar;
+	}
+	static void print(int[] res)
+	{
+		for(int i=0;i<res.length;i++)
+			System.out.print(res[i]+" ");
+	}
+	public static void main(String[] z)
+	{
+		int[] ar = new int[]{9,6,5,0,8,2};
+		int[] res= merge(ar,0,ar.length-1);
+		print(res);
+	}
+}
